@@ -1,0 +1,97 @@
+Basic Docker Interview Questions:
+
+What is Docker?
+Docker as a platform that enables developers to automate the deployment of applications inside lightweight, portable containers.
+
+What is a container?
+A container is a lightweight, standalone, executable package that includes everything needed to run a piece of software, such as the code, runtime, libraries, and system tools.
+
+What is the difference between a container and a virtual machine (VM)?
+Containers share the host system’s kernel and run as isolated processes, which makes them lightweight and fast. VMs, on the other hand, include the entire OS, making them more resource-heavy.
+
+What is a Docker image?
+An image is a read-only template used to create containers. It contains the application code, libraries, and dependencies.
+
+What is Docker Hub?
+Docker Hub is a cloud-based registry service where Docker images can be stored, shared, and accessed. It is the default registry for Docker.
+
+How do you create a Docker container?
+By using the docker run command, you can create and start a container from an image, e.g., docker run -it ubuntu bash.
+
+What is the difference between docker run and docker exec?
+docker run is used to create and start a new container, while docker exec is used to execute commands in a running container.
+
+How do you list all running Docker containers?
+docker ps will list all currently running containers.
+
+What does the -d flag do in the docker run command?
+The -d flag stands for "detached mode," meaning the container will run in the background.
+
+Intermediate Docker Interview Questions:
+What is a Dockerfile?
+A Dockerfile is a script that contains a series of instructions on how to build a Docker image. It includes commands like FROM, RUN, COPY, EXPOSE, and CMD.
+
+What is Docker Compose?
+Docker Compose is a tool for defining and running multi-container Docker applications. You define the services, networks, and volumes in a docker-compose.yml file and use docker-compose up to start everything.
+
+How can you persist data in Docker?
+Docker containers are ephemeral, meaning data is lost when they stop or are deleted. To persist data, you use Docker volumes or bind mounts.
+
+What is a Docker volume?
+A volume is a persistent data storage mechanism managed by Docker that can be shared between containers and survive container restarts.
+
+What is the difference between COPY and ADD in a Dockerfile?
+COPY is used to copy files or directories from your host to the container’s filesystem. ADD does the same, but also supports extracting tar files and fetching files from URLs.
+
+What is a Docker network?
+Docker networking allows containers to communicate with each other and the outside world. Docker provides several types of networks, like bridge, host, and overlay.
+
+How can you check the logs of a running container?
+Use the docker logs <container_name> command to view logs from a container.
+
+What is the purpose of the docker stop and docker kill commands?
+docker stop gracefully stops a container, while docker kill immediately terminates a container.
+
+Advanced Docker Interview Questions:
+What is Docker Swarm?
+Docker Swarm is Docker's native clustering and orchestration tool that enables you to manage multiple Docker hosts (a swarm of machines) as a single virtual host.
+
+What is the role of the Docker daemon?
+The Docker daemon (dockerd) is a background process that manages Docker containers, images, networks, and volumes. It listens for Docker API requests and can control Docker containers.
+
+What is Docker Registry?
+A Docker registry is a service for storing and distributing Docker images. Docker Hub is the default public registry, but you can also have private registries.
+
+Explain the concept of multi-stage builds in Docker.
+Multi-stage builds allow you to use multiple FROM statements in a Dockerfile, with each stage producing a different intermediate image. This helps in creating smaller, optimized images by separating build dependencies from runtime dependencies.
+
+What is the purpose of the EXPOSE command in a Dockerfile?
+The EXPOSE instruction in a Dockerfile informs Docker that the container listens on the specified network ports at runtime. This is mainly a documentation feature; it does not actually publish the port.
+
+How can you optimize Docker images?
+You can optimize Docker images by minimizing the number of layers in the Dockerfile, using smaller base images (e.g., Alpine), and cleaning up unnecessary dependencies after installation.
+
+How does Docker handle security?
+Docker employs a layered security model using namespaces, control groups (cgroups), and SELinux/AppArmor for process isolation. You can also configure security scanning tools and use Docker Content Trust (DCT) for image signing.
+
+What is the difference between docker pull and docker build?
+docker pull fetches an image from a registry, while docker build is used to build an image from a Dockerfile.
+
+What is an Overlay Network in Docker?
+An overlay network is a network that spans across multiple Docker hosts. It is often used in Docker Swarm to allow containers across different machines to communicate securely.
+
+How do you scale a Docker application in production?
+You can scale a Docker application using Docker Swarm or Kubernetes, adding or removing containers as necessary and ensuring the system remains fault-tolerant.
+
+What is the role of Kubernetes in container orchestration?
+Kubernetes is a powerful container orchestration platform that automates the deployment, scaling, and management of containerized applications. Unlike Docker Swarm, Kubernetes offers more advanced features like automatic scaling, load balancing, and service discovery.
+
+Hands-On / Scenario-Based Questions:
+How would you create a multi-container application using Docker Compose?
+Define the services, volumes, and networks in a docker-compose.yml file and use docker-compose up to start the entire application.
+
+How would you troubleshoot a container that is not starting properly?
+Check container logs (docker logs), inspect the container (docker inspect), and review the Docker daemon logs. Additionally, ensure that the image and its dependencies are correctly configured.
+
+How do you upgrade or patch a Docker container?
+Pull the latest image (docker pull <image>), stop the old container (docker stop), and start a new container from the updated image.
