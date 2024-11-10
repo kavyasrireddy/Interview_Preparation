@@ -1,0 +1,67 @@
+sudo su -  # login as the super user
+--------------------------------------------------------------------------------------------------------------------------------
+docker installation steps: 
+            https://docs.docker.com/engine/install/ubuntu/
+-----------------------------------------------------------------------------------------------------------------------------
+vi Dockerfile    # create the docker file from, copy/run , expose , cmd
+
+# Use an official Nginx image from the Docker Hub
+FROM nginx:latest
+
+# Copy local HTML files to the container's Nginx directory
+COPY ./html /usr/share/nginx/html
+
+# Expose port 80 to the outside world
+EXPOSE 80
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+docker build -t my-web-app .    # build the docker file 
+docker run -d -p 8080:80 my-web-app  # run the docker file
+
+Note: We can create the multiple docker files but the name of the dockerfile should be "Dockerfile" 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+docker ps       # To check the containers list
+docker ps -a
+-------------------------------------------------------------------------------------------------------------------------------
+
+vi docker-compose.yml
+
+version: '3.8'
+ 
+services:
+
+  web:
+
+    image: nginx:latest
+
+    ports:
+
+      - "8080:80"  # Change the host port to 8080
+
+    volumes:
+
+      - ./html:/usr/share/nginx/html
+
+    networks:
+
+      - app_network
+ 
+  redis:
+
+    image: redis:latest
+
+    networks:
+
+      - app_network
+ 
+networks:
+
+  app_network:
+
+    driver: bridge
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+docker-compose up  # run the services of the docker-compose.yml file
+docker-compose up -d  # run the services(pull the images, containers creation etc) but in the detached mode
+docker-compose down # To stop the services
+
+ 
